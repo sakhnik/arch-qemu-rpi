@@ -12,10 +12,10 @@ function cleanup
 {
     rm -rf /tmp/alarm.tar.gz
     sudo umount ./proc
-    sudo umount ./dev/null
+    sudo umount ./dev
 }
 
-trap cleanup STOP
+trap cleanup EXIT
 
 diff -q ./usr/bin/qemu-arm-static /usr/bin/qemu-arm-static || {
     sudo cp /usr/bin/qemu-arm-static ./usr/bin/
@@ -30,7 +30,7 @@ cat /proc/self/mounts > ./etc/mtab
 unlink ./etc/resolv.conf
 echo "nameserver 8.8.8.8" > ./etc/resolv.conf
 # Sometimes it's nice to have /dev/null. If needed, mount it in:
-touch ./dev/null && sudo mount -o bind /dev/null ./dev/null
+sudo mount -o bind /dev ./dev
 sudo mount -o bind /tmp ./tmp
 
 sudo chroot . ./bin/bash
