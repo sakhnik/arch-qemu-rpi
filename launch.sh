@@ -1,5 +1,12 @@
 #!/bin/bash -e
 
+# The original idea is taken from:
+# http://kbeckmann.github.io/2017/05/26/QEMU-instead-of-cross-compiling/
+#
+# Assuming qemu-user-static and binfmt-support have already been installed.
+# Also, binfmt support has been enabled:
+#   sudo update-binfmts --enable
+
 [[ -d alarm ]] || {
     wget -c -O /tmp/alarm.tar.gz http://os.archlinuxarm.org/os/ArchLinuxARM-rpi-2-latest.tar.gz
     mkdir -p alarm
