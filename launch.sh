@@ -13,6 +13,9 @@
     bsdtar -xpf /tmp/alarm.tar.gz -C alarm
 }
 
+# Ensure binfmt support is enabled
+sudo systemctl start binfmt-support.service
+
 cd alarm
 
 function cleanup
