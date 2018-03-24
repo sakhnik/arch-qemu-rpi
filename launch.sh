@@ -23,6 +23,7 @@ function cleanup
     rm -rf /tmp/alarm.tar.gz
     sudo umount ./proc
     sudo umount ./dev
+    sudo umount ./tmp
 }
 
 trap cleanup EXIT
@@ -32,7 +33,7 @@ diff -q ./usr/bin/qemu-arm-static /usr/bin/qemu-arm-static || {
 }
 
 # Mount the /proc file system
-sudo mount -t proc proc proc
+sudo mount -t proc proc ./proc
 # Hack: Replace ./etc/mtab with a copy of your mounts
 unlink ./etc/mtab
 cat /proc/self/mounts > ./etc/mtab
