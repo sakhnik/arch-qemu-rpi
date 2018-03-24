@@ -14,7 +14,7 @@
 }
 
 # Ensure binfmt support is enabled
-sudo systemctl start binfmt-support.service
+pacman -Qi binfmt-qemu-static >/dev/null 2>&1
 
 cd alarm
 
