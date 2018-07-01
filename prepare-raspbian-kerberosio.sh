@@ -87,6 +87,13 @@ cd /var/www/web
 chown www-data -R storage bootstrap/cache config/kerberos.php
 chmod -R 775 storage bootstrap/cache
 chmod 0600 config/kerberos.php
+
+# Tune journald
+mkdir /etc/systemd/journald.conf.d/
+cat >/etc/systemd/journald.conf.d/00-journal-size.conf <<XXX
+[Journal]
+SystemMaxUse=50M
+XXX
 EOF
 chmod +x $target/install.sh
 
